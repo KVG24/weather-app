@@ -7,11 +7,44 @@
     </head>
     <body>
         <div class="content">
-            <form novalidate>
-                <label for="search">Search location: </label>
-                <input type="text" name="search" id="search" />
-                <button type="submit" id="submit">SEARCH</button>
-            </form>
+            <div class="form">
+                <form id="form" novalidate>
+                    <label for="search">Search location: </label>
+                    <input type="text" name="search" id="search" />
+                    <button type="submit" id="submit">SEARCH</button>
+                </form>
+            </div>
+            <div class="data">
+                <div class="today">
+                    <div class="today-data">
+                        <div class="temp">
+                            <p id="tempcurrent"></p>
+                            <p id="tempmax"></p>
+                            <p id="tempmin"></p>
+                        </div>
+                        <div class="description">
+                            <p id="location"></p>
+                            <p id="description"></p>
+                        </div>
+                    </div>
+                    <div class="hours">
+                        <div class="hour"></div>
+                        <div class="hour"></div>
+                        <div class="hour"></div>
+                        <div class="hour"></div>
+                        <div class="hour"></div>
+                        <div class="hour"></div>
+                    </div>
+                </div>
+                <div class="days">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                    <div class="four"></div>
+                    <div class="five"></div>
+                    <div class="six"></div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
