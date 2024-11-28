@@ -1,2 +1,3 @@
-# template
-Template for new repo
+# WEATHER APP
+
+The Odin Project assignment
