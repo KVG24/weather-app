@@ -9,8 +9,12 @@
         <div class="content">
             <div class="form">
                 <form id="form" novalidate>
-                    <label for="search">Search location: </label>
-                    <input type="text" name="search" id="search" />
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        placeholder="Search location"
+                    />
                     <button type="submit" id="submit">SEARCH</button>
                 </form>
             </div>
@@ -18,32 +22,22 @@
                 <div class="today">
                     <div class="today-data">
                         <div class="temp">
-                            <p id="tempcurrent"></p>
-                            <p id="tempmax"></p>
-                            <p id="tempmin"></p>
+                            <div id="icon"></div>
+                            <div id="tempcurrent"></div>
+                            <div id="temprange"></div>
+                            <div id="precip-prob"></div>
+                            <div id="pressure"></div>
+                            <div id="humidity"></div>
                         </div>
                         <div class="description">
-                            <p id="location"></p>
-                            <p id="description"></p>
+                            <div id="location"></div>
+                            <div id="description"></div>
+                            <div id="suntime"></div>
                         </div>
                     </div>
-                    <div class="hours">
-                        <div class="hour"></div>
-                        <div class="hour"></div>
-                        <div class="hour"></div>
-                        <div class="hour"></div>
-                        <div class="hour"></div>
-                        <div class="hour"></div>
-                    </div>
+                    <div class="hours"></div>
                 </div>
-                <div class="days">
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
-                    <div class="four"></div>
-                    <div class="five"></div>
-                    <div class="six"></div>
-                </div>
+                <div class="days"></div>
             </div>
         </div>
     </body>
