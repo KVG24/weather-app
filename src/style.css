@@ -21,6 +21,13 @@ body {
     gap: 30px;
 }
 
+#error {
+    color: #9e0202;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+}
+
 .data {
     width: 800px;
     min-height: 80%;

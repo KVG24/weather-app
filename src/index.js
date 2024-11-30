@@ -3,6 +3,7 @@ import { renderData } from "./render";
 
 const searchInput = document.getElementById("search");
 const submitBtn = document.getElementById("submit");
+const errorBox = document.getElementById("error");
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
@@ -23,5 +24,6 @@ submitBtn.addEventListener("click", (event) => {
         })
         .catch((err) => {
             console.error(err);
+            errorBox.textContent = "No such location";
         });
 });
