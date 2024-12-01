@@ -12,6 +12,8 @@ const hoursContainer = document.querySelector(".hours");
 const daysContainer = document.querySelector(".days");
 const currentDate = new Date();
 let currentHour = currentDate.getHours();
+let currentDay = currentDate.getDay();
+const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export function renderData(data) {
     hoursContainer.replaceChildren();
@@ -100,8 +102,13 @@ export function renderData(data) {
         const dayTempRange = document.createElement("div");
         const dayPrecipProb = document.createElement("div");
 
-        let date = data.days[i].datetime;
-        dayDate.textContent = date.substring(8);
+        let date = data.days[i].datetime.substring(8);
+        if (date < 10) {
+            dayDate.textContent = `${
+                dayNames[currentDay + i - 1]
+            } ${date.substring(1)}`;
+        } else dayDate.textContent = `${dayNames[currentDay + i - 1]} ${date}`;
+
         if (data.days[i].icon == "cloudy") {
             dayIcon.textContent = "☁️";
         } else if (data.days[i].icon == "snow") {
@@ -121,6 +128,7 @@ export function renderData(data) {
         } else if (data.days[i].icon == "clear-night") {
             dayIcon.textContent = "🌙";
         }
+
         dayTemp.textContent = `${data.days[i].temp} °C`;
         dayTempRange.textContent = `${data.days[i].tempmin} / ${data.days[i].tempmax} °C`;
         dayPrecipProb.textContent = `💦 ${data.days[i].precipprob}%`;
