@@ -38,14 +38,17 @@ export function renderData(data) {
         icon.textContent = "🌙";
     }
     addressText.textContent = data.resolvedAddress;
-    desc.textContent = data.description + " " + data.days[0].description;
-    date.textContent = data.days[0].datetime;
+    date.textContent = `🗓️ ${data.days[0].datetime}`;
+    desc.innerHTML = `<p>${data.days[0].description}</p><p>${data.description}</p>`;
     tempCurrent.textContent = `${data.days[0].hours[currentHour].temp} °C`;
     tempRange.textContent = `Min/Max ${data.days[0].tempmin} / ${data.days[0].tempmax} °C`;
     precipProb.textContent = `💦 ${data.days[0].precipprob}%`;
     pressure.textContent = `Pressure: ${data.currentConditions.pressure} mbar`;
     humidity.textContent = `Humidity ${data.currentConditions.humidity}%`;
-    suntime.textContent = `Sunrise ${data.currentConditions.sunrise} | Sunset ${data.currentConditions.sunset}`;
+    suntime.textContent = `🌅 ${data.currentConditions.sunrise.slice(
+        0,
+        5
+    )} | 🌆${data.currentConditions.sunset.slice(0, 5)}`;
 
     for (let i = 1; i < 7; i++) {
         const hourDiv = document.createElement("div");
@@ -54,9 +57,13 @@ export function renderData(data) {
         const hourTemp = document.createElement("div");
         const hourPrecipProb = document.createElement("div");
         const hourHumidity = document.createElement("div");
+
         hourTime.textContent = data.days[0].hours[
             currentHour + i
         ].datetime.substring(0, 5);
+        hourTime.className = "hour-time";
+
+        hourIcon.className = "hour-icon";
         if (data.days[0].hours[currentHour + i].icon == "cloudy") {
             hourIcon.textContent = "☁️";
         } else if (data.days[0].hours[currentHour + i].icon == "snow") {
@@ -72,7 +79,7 @@ export function renderData(data) {
         ) {
             hourIcon.textContent = "🌤️";
         } else if (
-            data.days[0].hours[currentHour + i].icon == "partly-clody-night"
+            data.days[0].hours[currentHour + i].icon == "partly-cloudy-night"
         ) {
             hourIcon.textContent = "🌥️";
         } else if (data.days[0].hours[currentHour + i].icon == "clear-day") {
@@ -80,13 +87,16 @@ export function renderData(data) {
         } else if (data.days[0].hours[currentHour + i].icon == "clear-night") {
             hourIcon.textContent = "🌙";
         }
+
         hourTemp.textContent = `${data.days[0].hours[currentHour + i].temp} °C`;
+        hourTemp.className = "hour-temp";
         hourPrecipProb.textContent = `💦 ${
             data.days[0].hours[currentHour + i].precipprob
         }%`;
         hourHumidity.textContent = `HM: ${
             data.days[0].hours[currentHour + i].humidity
         }%`;
+
         hourDiv.appendChild(hourTime);
         hourDiv.appendChild(hourIcon);
         hourDiv.appendChild(hourTemp);
@@ -108,7 +118,9 @@ export function renderData(data) {
                 dayNames[currentDay + i - 1]
             } ${date.substring(1)}`;
         } else dayDate.textContent = `${dayNames[currentDay + i - 1]} ${date}`;
+        dayDate.className = "day-date";
 
+        dayIcon.className = "day-icon";
         if (data.days[i].icon == "cloudy") {
             dayIcon.textContent = "☁️";
         } else if (data.days[i].icon == "snow") {
@@ -121,7 +133,7 @@ export function renderData(data) {
             dayIcon.textContent = "🍃";
         } else if (data.days[i].icon == "partly-cloudy-day") {
             dayIcon.textContent = "🌤️";
-        } else if (data.days[i].icon == "partly-clody-night") {
+        } else if (data.days[i].icon == "partly-cloudy-night") {
             dayIcon.textContent = "🌥️";
         } else if (data.days[i].icon == "clear-day") {
             dayIcon.textContent = "☀️";
@@ -130,6 +142,7 @@ export function renderData(data) {
         }
 
         dayTemp.textContent = `${data.days[i].temp} °C`;
+        dayTemp.className = "day-temp";
         dayTempRange.textContent = `${data.days[i].tempmin} / ${data.days[i].tempmax} °C`;
         dayPrecipProb.textContent = `💦 ${data.days[i].precipprob}%`;
 

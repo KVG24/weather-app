@@ -17,6 +17,7 @@ submitBtn.addEventListener("click", (event) => {
         .then((response) => {
             const data = response.json();
             console.log(data);
+            errorBox.textContent = "";
             return data;
         })
         .then((data) => {
