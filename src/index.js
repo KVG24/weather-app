@@ -4,6 +4,7 @@ import { renderData } from "./render";
 const searchInput = document.getElementById("search");
 const submitBtn = document.getElementById("submit");
 const errorBox = document.getElementById("error");
+const changeUnitBtn = document.querySelector("change-unit");
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
