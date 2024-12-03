@@ -18,36 +18,39 @@ export function renderData(data) {
     daysContainer.replaceChildren();
 
     // Today
+    let today = data.days[0];
 
-    if (data.days[0].icon == "cloudy") {
+    if (today.icon == "cloudy") {
         icon.textContent = "☁️";
-    } else if (data.days[0].icon == "snow") {
+    } else if (today.icon == "snow") {
         icon.textContent = "❄️";
-    } else if (data.days[0].icon == "fog") {
+    } else if (today.icon == "fog") {
         icon.textContent = "🌫️";
-    } else if (data.days[0].icon == "rain") {
+    } else if (today.icon == "rain") {
         icon.textContent = "🌧️";
-    } else if (data.days[0].icon == "wind") {
+    } else if (today.icon == "wind") {
         icon.textContent = "🍃";
-    } else if (data.days[0].icon == "partly-cloudy-day") {
+    } else if (today.icon == "partly-cloudy-day") {
         icon.textContent = "🌤️";
-    } else if (data.days[0].icon == "partly-clody-night") {
+    } else if (today.icon == "partly-clody-night") {
         icon.textContent = "🌥️";
-    } else if (data.days[0].icon == "clear-day") {
+    } else if (today.icon == "clear-day") {
         icon.textContent = "☀️";
-    } else if (data.days[0].icon == "clear-night") {
+    } else if (today.icon == "clear-night") {
         icon.textContent = "🌙";
     }
+
     addressText.textContent = data.resolvedAddress;
-    date.textContent = `🗓️ ${data.days[0].datetime}`;
-    desc.innerHTML = `<p>${data.days[0].description}</p><p>${data.description}</p>`;
-    tempCurrent.textContent = `${Math.round(
-        data.days[0].hours[currentHour].temp
-    )} °C`;
-    tempRange.textContent = `Min/Max ${Math.round(
-        data.days[0].tempmin
-    )} / ${Math.round(data.days[0].tempmax)} °C`;
-    precipProb.textContent = `💦 ${Math.round(data.days[0].precipprob)}%`;
+    date.textContent = `🗓️ ${today.datetime}`;
+    desc.innerHTML = `<p>${today.description}</p><p>${data.description}</p>`;
+
+    let currentTempData = Math.round(today.hours[currentHour].temp);
+    let currentTempMin = Math.round(today.tempmin);
+    let currentTempMax = Math.round(today.tempmax);
+    tempCurrent.textContent = `${currentTempData} °C`;
+    tempRange.textContent = `Min/Max ${currentTempMin} / ${currentTempMax} °C`;
+
+    precipProb.textContent = `💦 ${Math.round(today.precipprob)}%`;
     pressure.textContent = `Pressure: ${data.currentConditions.pressure} mbar`;
     humidity.textContent = `Humidity ${data.currentConditions.humidity}%`;
     suntime.textContent = `🌅 ${data.currentConditions.sunrise.slice(
@@ -64,38 +67,37 @@ export function renderData(data) {
         const hourTemp = document.createElement("div");
         const hourPrecipProb = document.createElement("div");
         const hourHumidity = document.createElement("div");
-        let curHour = data.days[0].hours[currentHour + i];
+        let hour = today.hours[currentHour + i];
 
-        hourTime.textContent = data.days[0].hours[
-            currentHour + i
-        ].datetime.substring(0, 5);
+        hourTime.textContent = hour.datetime.substring(0, 5);
         hourTime.className = "hour-time";
 
         hourIcon.className = "hour-icon";
-        if (curHour.icon == "cloudy") {
+        if (hour.icon == "cloudy") {
             hourIcon.textContent = "☁️";
-        } else if (curHour.icon == "snow") {
+        } else if (hour.icon == "snow") {
             hourIcon.textContent = "❄️";
-        } else if (curHour.icon == "fog") {
+        } else if (hour.icon == "fog") {
             hourIcon.textContent = "🌫️";
-        } else if (curHour.icon == "rain") {
+        } else if (hour.icon == "rain") {
             hourIcon.textContent = "🌧️";
-        } else if (curHour.icon == "wind") {
+        } else if (hour.icon == "wind") {
             hourIcon.textContent = "🍃";
-        } else if (curHour.icon == "partly-cloudy-day") {
+        } else if (hour.icon == "partly-cloudy-day") {
             hourIcon.textContent = "🌤️";
-        } else if (curHour.icon == "partly-cloudy-night") {
+        } else if (hour.icon == "partly-cloudy-night") {
             hourIcon.textContent = "🌥️";
-        } else if (curHour.icon == "clear-day") {
+        } else if (hour.icon == "clear-day") {
             hourIcon.textContent = "☀️";
-        } else if (curHour.icon == "clear-night") {
+        } else if (hour.icon == "clear-night") {
             hourIcon.textContent = "🌙";
         }
 
-        hourTemp.textContent = `${Math.round(curHour.temp)} °C`;
+        let hourlyTempData = Math.round(hour.temp);
+        hourTemp.textContent = `${hourlyTempData} °C`;
         hourTemp.className = "hour-temp";
-        hourPrecipProb.textContent = `💦 ${Math.round(curHour.precipprob)}%`;
-        hourHumidity.textContent = `HM: ${curHour.humidity}%`;
+        hourPrecipProb.textContent = `💦 ${Math.round(hour.precipprob)}%`;
+        hourHumidity.textContent = `HM: ${hour.humidity}%`;
 
         hourDiv.appendChild(hourTime);
         hourDiv.appendChild(hourIcon);
@@ -114,8 +116,8 @@ export function renderData(data) {
         const dayTemp = document.createElement("div");
         const dayTempRange = document.createElement("div");
         const dayPrecipProb = document.createElement("div");
-        let curDay = data.days[i];
-        let date = curDay.datetime.substring(8);
+        let day = data.days[i];
+        let date = day.datetime.substring(8);
 
         currentDate.setDate(currentDate.getDate() + 1);
         let weekday = currentDate.toLocaleString("en-US", { weekday: "short" });
@@ -125,33 +127,34 @@ export function renderData(data) {
         dayDate.className = "day-date";
 
         dayIcon.className = "day-icon";
-        if (curDay.icon == "cloudy") {
+        if (day.icon == "cloudy") {
             dayIcon.textContent = "☁️";
-        } else if (curDay.icon == "snow") {
+        } else if (day.icon == "snow") {
             dayIcon.textContent = "❄️";
-        } else if (curDay.icon == "fog") {
+        } else if (day.icon == "fog") {
             dayIcon.textContent = "🌫️";
-        } else if (curDay.icon == "rain") {
+        } else if (day.icon == "rain") {
             dayIcon.textContent = "🌧️";
-        } else if (curDay.icon == "wind") {
+        } else if (day.icon == "wind") {
             dayIcon.textContent = "🍃";
-        } else if (curDay.icon == "partly-cloudy-day") {
+        } else if (day.icon == "partly-cloudy-day") {
             dayIcon.textContent = "🌤️";
-        } else if (curDay.icon == "partly-cloudy-night") {
+        } else if (day.icon == "partly-cloudy-night") {
             dayIcon.textContent = "🌥️";
-        } else if (curDay.icon == "clear-day") {
+        } else if (day.icon == "clear-day") {
             dayIcon.textContent = "☀️";
-        } else if (curDay.icon == "clear-night") {
+        } else if (day.icon == "clear-night") {
             dayIcon.textContent = "🌙";
         }
 
-        dayTemp.textContent = `${Math.round(curDay.temp)} °C`;
+        let dailyTemp = Math.round(day.temp);
+        let dailyTempMin = Math.round(day.tempmin);
+        let dailyTempMax = Math.round(day.tempmax);
+        dayTemp.textContent = `${dailyTemp} °C`;
         dayTemp.className = "day-temp";
-        dayTempRange.textContent = `${Math.round(
-            curDay.tempmin
-        )} / ${Math.round(curDay.tempmax)} °C`;
-        dayPrecipProb.textContent = `💦 ${Math.round(curDay.precipprob)}%`;
-
+        dayTempRange.textContent = `${dailyTempMin} / ${dailyTempMax} °C`;
+        dayTempRange.className = "day-temp-range";
+        dayPrecipProb.textContent = `💦 ${Math.round(day.precipprob)}%`;
         dayDiv.appendChild(dayDate);
         dayDiv.appendChild(dayIcon);
         dayDiv.appendChild(dayTemp);
