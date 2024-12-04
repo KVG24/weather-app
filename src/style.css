@@ -207,6 +207,7 @@ a {
 .days > div {
     background-color: var(--bg-color);
     width: 100%;
+    padding: 10px;
 }
 
 .loader-container {
