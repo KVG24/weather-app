@@ -4,7 +4,7 @@
 }
 
 :root {
-    --bg-color: rgb(67, 68, 102);
+    --bg-color: rgba(33, 33, 49, 0.7);
 }
 
 * {
@@ -18,11 +18,38 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #242a46;
+    background-color: #242a464f;
     color: white;
 }
 
+body {
+    background-position: center;
+}
+
 .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer {
+    width: 100%;
+    height: 20px;
+    background-color: #242a46c2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+a {
+    color: #bdbefc;
+}
+
+.main {
     width: 100%;
     height: 100%;
     display: flex;
@@ -34,7 +61,7 @@ body {
 }
 
 #search {
-    max-width: 200px;
+    width: 200px;
     height: 30px;
     border-radius: 5px;
     font-size: 1em;
@@ -57,6 +84,12 @@ body {
     font-weight: 800;
 }
 
+#submit:hover,
+#change-unit:hover {
+    cursor: pointer;
+    background-color: #b4b4b4;
+}
+
 #error {
     color: #ff0000;
     width: 200px;
@@ -67,27 +100,28 @@ body {
 
 .data {
     min-height: 80%;
-    background-color: rgb(53, 53, 53);
+    background-color: rgba(60, 60, 60, 0.9);
     display: grid;
     grid-template-rows: 2fr 1fr;
     gap: 20px;
-    padding: 20px;
 }
 
 .today {
-    background-color: rgb(43, 42, 42);
+    background-color: rgba(129, 129, 129, 0.4);
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
+    box-shadow: 0px 10px 20px 0px #111;
+    margin: 10px;
 }
 
 .data,
 .today,
 .temp,
-.description,
-.hours div,
-.days div {
+.desc-container,
+.hours > div,
+.days > div {
     border-radius: 10px;
 }
 
@@ -98,9 +132,9 @@ body {
 }
 
 .temp,
-.description,
-.hours div,
-.days div {
+.desc-container,
+.hours > div,
+.days > div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -114,6 +148,7 @@ body {
 .temp {
     width: 200px;
     background-color: var(--bg-color);
+    padding-bottom: 10px;
 }
 
 #tempcurrent {
@@ -126,7 +161,7 @@ body {
     font-weight: 800;
 }
 
-.description {
+.desc-container {
     width: 500px;
     background-color: var(--bg-color);
     padding: 10px;
@@ -156,18 +191,56 @@ body {
     font-weight: 600;
 }
 
-.hours div {
+.hours > div {
     background-color: var(--bg-color);
     flex-grow: 1;
     min-width: 115px;
+    padding: 10px;
 }
 
 .days {
     display: flex;
     gap: 10px;
+    padding: 10px;
 }
 
-.days div {
+.days > div {
     background-color: var(--bg-color);
     width: 100%;
+}
+
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bullet {
+    width: 25px;
+    height: 25px;
+    background-color: rgb(1, 82, 119);
+    margin-left: 5px;
+    border-radius: 50%;
+    margin-top: calc(50px - 12.5px);
+    animation: loading 0.9s infinite alternate;
+}
+.two {
+    animation-delay: 0.3s;
+}
+.three {
+    animation-delay: 0.6s;
+}
+@keyframes loading {
+    to {
+        opacity: 0.3;
+        transform: translateY(-25px);
+    }
 }

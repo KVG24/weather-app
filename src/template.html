@@ -7,40 +7,31 @@
     </head>
     <body>
         <div class="content">
-            <div class="form">
-                <form id="form" novalidate>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Search location"
-                    />
-                    <button type="submit" id="submit">SEARCH</button>
-                    <button type="button" id="change-unit">°C ⇆ °F</button>
-                </form>
-                <div id="error"></div>
-            </div>
-            <div class="data">
-                <div class="today">
-                    <div class="today-data">
-                        <div class="temp">
-                            <div id="icon"></div>
-                            <div id="tempcurrent"></div>
-                            <div id="temprange"></div>
-                            <div id="precip-prob"></div>
-                            <div id="pressure"></div>
-                            <div id="humidity"></div>
-                        </div>
-                        <div class="description">
-                            <div id="location"></div>
-                            <div id="date"></div>
-                            <div id="description"></div>
-                            <div id="suntime"></div>
-                        </div>
-                    </div>
-                    <div class="hours"></div>
+            <div class="loader-container" style="display: none">
+                <div class="loader">
+                    <div class="bullet one"></div>
+                    <div class="bullet two"></div>
+                    <div class="bullet three"></div>
                 </div>
-                <div class="days"></div>
+            </div>
+            <div class="main">
+                <div class="form">
+                    <form id="form" novalidate>
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search location"
+                        />
+                        <button type="submit" id="submit">SEARCH</button>
+                        <button type="button" id="change-unit">°C ⇆ °F</button>
+                    </form>
+                    <div id="error"></div>
+                </div>
+                <div class="data"></div>
+            </div>
+            <div class="footer">
+                <p class="footer-text"></p>
             </div>
         </div>
     </body>

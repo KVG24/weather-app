@@ -1,6 +1,4 @@
 const changeUnitBtn = document.getElementById("change-unit");
-const tempCurrent = document.getElementById("tempcurrent");
-const tempRange = document.getElementById("temprange");
 let isCelsius = true;
 
 changeUnitBtn.addEventListener("click", () => {
@@ -9,6 +7,9 @@ changeUnitBtn.addEventListener("click", () => {
 });
 
 export function updateTemperatures() {
+    const tempCurrent = document.getElementById("tempcurrent");
+    const tempRange = document.getElementById("temprange");
+
     // Update the "current temperature" data
     const currentTempText = tempCurrent.textContent;
     const matchCurrent = currentTempText.match(/(-?\d+)/);
@@ -68,6 +69,6 @@ export function updateTemperatures() {
 
 function convertTemp(temp) {
     return isCelsius
-        ? Math.round((temp - 32) * (5 / 9)) // Fahrenheit to Celsius
-        : Math.round(temp * (9 / 5) + 32); // Celsius to Fahrenheit
+        ? Math.round((temp - 32) * (5 / 9))
+        : Math.round(temp * (9 / 5) + 32);
 }
