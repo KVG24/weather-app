@@ -230,6 +230,7 @@ a {
     justify-content: center;
     align-items: center;
 }
+
 .bullet {
     width: 25px;
     height: 25px;
@@ -239,12 +240,15 @@ a {
     margin-top: calc(50px - 12.5px);
     animation: loading 0.9s infinite alternate;
 }
+
 .two {
     animation-delay: 0.3s;
 }
+
 .three {
     animation-delay: 0.6s;
 }
+
 @keyframes loading {
     to {
         opacity: 0.3;
