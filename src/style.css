@@ -15,23 +15,28 @@
 html,
 body {
     width: 100vw;
-    height: 100vh;
     margin: 0;
     padding: 0;
     background-color: #242a464f;
     color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .content {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1;
 }
 
 .footer {
@@ -43,6 +48,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 0.8em;
+    margin-top: auto;
 }
 
 a {
@@ -243,5 +249,81 @@ a {
     to {
         opacity: 0.3;
         transform: translateY(-25px);
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    #form {
+        display: flex;
+        gap: 5px;
+    }
+
+    #search {
+        width: 50%;
+    }
+
+    .data {
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        margin: 10px;
+    }
+
+    .today-data {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+
+    .temp,
+    .desc-container {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .temp {
+        order: 2;
+    }
+
+    .desc-container {
+        order: 1;
+    }
+
+    .hours {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hours > div {
+        width: 90%;
+        margin: 5px 0;
+        min-width: auto;
+        flex-direction: row;
+    }
+
+    .days {
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+    }
+
+    .days > div {
+        width: 90%;
+        margin: 5px 0;
+        flex-direction: row;
+    }
+    #icon {
+        font-size: 3em;
+    }
+    .hour-icon,
+    .day-icon {
+        font-size: 3em;
+    }
+    #tempcurrent {
+        font-size: 1.5rem;
     }
 }
